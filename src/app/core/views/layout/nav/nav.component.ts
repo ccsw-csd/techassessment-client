@@ -24,7 +24,7 @@ export class NavComponent {
         expanded: false,
         visible: true,
         items: [
-          { label: 'List', routerLink: '/skills' }
+          { label: 'List', routerLink: 'skills' }
         ],
       },
     ];

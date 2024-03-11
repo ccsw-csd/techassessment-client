@@ -1,1 +1,57 @@
-<p>skill works!</p>
+<div>
+  <h1>Skills</h1>
+
+  <p-table
+    [value]="skills"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [tableStyle]="{ 'min-width': '50rem' }"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="padding: 10px" pSortableColumn="id">
+          Id <p-sortIcon field="id"></p-sortIcon>
+        </th>
+        <th pSortableColumn="group">
+          Group <p-sortIcon field="group"></p-sortIcon>
+        </th>
+        <th pSortableColumn="label">
+          Label <p-sortIcon field="label"></p-sortIcon>
+        </th>
+        <th pSortableColumn="level">
+          Level <p-sortIcon field="level"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-skill>
+      <tr>
+        <td>{{ skill.id }}</td>
+        <td>{{ skill.group }}</td>
+        <td>{{ skill.label }}</td>
+        <td>{{ skill.level }}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+      <div>
+        <p-button
+          size="small"
+          [rounded]="true"
+          icon="pi pi-plus"
+          [outlined]="true"
+        ></p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+      <p-button
+        size="small"
+        [rounded]="true"
+        icon="pi pi-cloud"
+        [outlined]="true"
+      ></p-button>
+    </ng-template>
+  </p-table>
+</div>

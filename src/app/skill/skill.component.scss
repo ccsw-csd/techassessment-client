@@ -1,0 +1,11 @@
+::ng-deep {
+  .p-button {
+    min-width: 0px;
+    background: transparent;
+
+    :hover {
+      opacity: 0.6;
+    }
+  }
+
+}
