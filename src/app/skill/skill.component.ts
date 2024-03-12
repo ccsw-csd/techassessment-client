@@ -20,9 +20,9 @@ export class SkillComponent implements OnInit {
   pageNumber: number = 0;
   pageSize: number = 10;
   skills: Skill[] = [];
+  totalElements: number = 0;
 
   ngOnInit(): void {
-    this.skillService.getAllSkills().subscribe((skills_) => this.skills = skills_);
 
     //Load the first page
     this.onPageChange({first: 0, rows:5})
@@ -48,11 +48,12 @@ export class SkillComponent implements OnInit {
 
 
     this.skillService
-      .getSkillsPage(pageable, )
+      .getSkillsPage(pageable,)
       .subscribe((data) => {
-        this.skills = data;
+        this.skills = data.content;
         this.pageNumber = data.pageable.pageNumber;
         this.pageSize = data.pageable.pageSize;
+        this.totalElements = data.totalElements;
       });
 
 

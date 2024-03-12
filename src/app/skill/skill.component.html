@@ -6,6 +6,7 @@
     [paginator]="true"
     (onPage)="onPageChange($event)"
     [rows]="5"
+    [totalRecords]="totalElements"
     [showCurrentPageReport]="true"
     styleClass="p-datatable-gridlines"
     [rowsPerPageOptions]="[5, 10, 20]"
@@ -17,24 +18,21 @@
         <th style="padding: 10px" pSortableColumn="id">
           Id <p-sortIcon field="id"></p-sortIcon>
         </th>
-        <th pSortableColumn="group">
-          Group <p-sortIcon field="group"></p-sortIcon>
+        <th pSortableColumn="skillGroup">
+          Group <p-sortIcon field="skillGroup"></p-sortIcon>
         </th>
         <th pSortableColumn="label">
           Label <p-sortIcon field="label"></p-sortIcon>
         </th>
-        <th pSortableColumn="level">
-          Level <p-sortIcon field="level"></p-sortIcon>
-        </th>
+
       </tr>
     </ng-template>
 
     <ng-template pTemplate="body" let-skill>
       <tr>
         <td>{{ skill.id }}</td>
-        <td>{{ skill.group }}</td>
+        <td>{{ skill.skillGroup }}</td>
         <td>{{ skill.label }}</td>
-        <td>{{ skill.level }}</td>
       </tr>
     </ng-template>
     <ng-template pTemplate="paginatorleft">

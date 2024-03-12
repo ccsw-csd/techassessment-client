@@ -3,104 +3,87 @@ import { Skill } from "./Skill";
 export const SKILLS_DATA:Skill[] = [
 	{
 		id: '1',
-		group: 'Frontend',
+		skillGroup: 'Frontend',
 		label: 'HTML',
-		level: 5
 	},
 	{
 		id: '2',
-		group: 'Frontend',
+		skillGroup: 'Frontend',
 		label: 'CSS',
-		level: 5
 	},
 	{
 		id: '3',
-		group: 'Frontend',
+		skillGroup: 'Frontend',
 		label: 'JavaScript',
-		level: 5
 	},
 	{
 		id: '4',
-		group: 'Frontend',
+		skillGroup: 'Frontend',
 		label: 'Angular',
-		level: 4
 	},
 	{
 		id: '5',
-		group: 'Frontend',
+		skillGroup: 'Frontend',
 		label: 'React',
-		level: 3
 	},
 	{
 		id: '6',
-		group: 'Frontend',
+		skillGroup: 'Frontend',
 		label: 'Vue',
-		level: 2
 	},
 	{
 		id: '7',
-		group: 'Backend',
+		skillGroup: 'Backend',
 		label: 'Node.js',
-		level: 4
 	},
 	{
 		id: '8',
-		group: 'Backend',
+		skillGroup: 'Backend',
 		label: 'Express',
-		level: 4
 	},
 	{
 		id: '9',
-		group: 'Backend',
+		skillGroup: 'Backend',
 		label: 'Django',
-		level: 3
 	},
 	{
 		id: '10',
-		group: 'Backend',
+		skillGroup: 'Backend',
 		label: 'Flask',
-		level: 3
 	},
 	{
 		id: '11',
-		group: 'Backend',
+		skillGroup: 'Backend',
 		label: 'Spring',
-		level: 3
 	},
 	{
 		id: '12',
-		group: 'Database',
+		skillGroup: 'Database',
 		label: 'MySQL',
-		level: 4
 	},
 	{
 		id: '13',
-		group: 'Database',
+		skillGroup: 'Database',
 		label: 'PostgreSQL',
-		level: 4
 	},
 	{
 		id: '14',
-		group: 'Database',
+		skillGroup: 'Database',
 		label: 'MongoDB',
-		level: 3
 	},
 	{
 		id: '15',
-		group: 'Database',
+		skillGroup: 'Database',
 		label: 'Cassandra',
-		level: 3
 	},
 	{
 		id: '16',
-		group: 'Database',
+		skillGroup: 'Database',
 		label: 'Redis',
-		level: 3
 	},
 	{
 		id: '17',
-		group: 'DevOps',
+		skillGroup: 'DevOps',
 		label: 'Docker',
-		level: 4
 	},
 ]
