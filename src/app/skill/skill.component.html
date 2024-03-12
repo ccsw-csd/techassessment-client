@@ -1,13 +1,15 @@
-<div>
+<div class="container">
   <h1>Skills</h1>
 
   <p-table
     [value]="skills"
     [paginator]="true"
+    (onPage)="onPageChange($event)"
     [rows]="5"
     [showCurrentPageReport]="true"
+    styleClass="p-datatable-gridlines"
     [rowsPerPageOptions]="[5, 10, 20]"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    currentPageReportTemplate=""
     [tableStyle]="{ 'min-width': '50rem' }"
   >
     <ng-template pTemplate="header">
@@ -37,21 +39,14 @@
     </ng-template>
     <ng-template pTemplate="paginatorleft">
       <div>
-        <p-button
-          size="small"
-          [rounded]="true"
-          icon="pi pi-plus"
-          [outlined]="true"
-        ></p-button>
+        <button class="pi pi-plus">
+        </button>
       </div>
     </ng-template>
     <ng-template pTemplate="paginatorright">
-      <p-button
-        size="small"
-        [rounded]="true"
-        icon="pi pi-cloud"
-        [outlined]="true"
-      ></p-button>
+        <button class="pi pi-cloud">
+
+        </button>
     </ng-template>
   </p-table>
 </div>

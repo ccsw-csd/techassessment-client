@@ -1,11 +1,12 @@
-::ng-deep {
-  .p-button {
-    min-width: 0px;
-    background: transparent;
+button{
+  background: transparent;
+  border-radius: 9999px;
+  padding: 10px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
 
-    :hover {
-      opacity: 0.6;
-    }
+  &:hover{
+    border: 1px var(--primary-color) solid;
   }
-
-}
+}  

@@ -16,4 +16,8 @@ export class SkillService {
 	  return of(SKILLS_DATA);
   }
 
+  getSkillsPage(pageable: any):Observable<any> {
+    return of(SKILLS_DATA);
+  }
+
 }

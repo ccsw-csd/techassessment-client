@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { SkillService } from './skill.service';
 import { Skill } from './model/Skill';
-import { TableModule } from 'primeng/table';
+import { TableModule, TablePageEvent } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { PaginatorState } from 'primeng/paginator';
+import { Pageable } from '../core/model/page/Pageable';
+
 
 @Component({
   selector: 'app-skill',
@@ -14,11 +17,45 @@ import { ButtonModule } from 'primeng/button';
 export class SkillComponent implements OnInit {
   constructor(private skillService: SkillService) {}
 
+  pageNumber: number = 0;
+  pageSize: number = 10;
   skills: Skill[] = [];
 
   ngOnInit(): void {
     this.skillService.getAllSkills().subscribe((skills_) => this.skills = skills_);
+
+    //Load the first page
+    this.onPageChange({first: 0, rows:5})
   }
 
+  onPageChange(event?: TablePageEvent) {
+
+    let pageable: Pageable = {
+      pageNumber: this.pageNumber,
+      pageSize: this.pageSize,
+      sort: [
+        {
+          property: 'id',
+          direction: 'ASC',
+        },
+      ],
+    };
+
+     if (event != null) {
+      pageable.pageSize = event.rows;
+      pageable.pageNumber = event.first / event.rows;
+    }
+
+
+    this.skillService
+      .getSkillsPage(pageable, )
+      .subscribe((data) => {
+        this.skills = data;
+        this.pageNumber = data.pageable.pageNumber;
+        this.pageSize = data.pageable.pageSize;
+      });
+
+
+  }
   
 }
