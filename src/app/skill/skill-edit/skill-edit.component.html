@@ -1,0 +1,20 @@
+<div>
+  <button (click)="showDialog()" class="pi pi-plus"></button>
+  <p-dialog
+    header="Crear Skill"
+    [(visible)]="visible"
+    [modal]="true"
+    [style]="{ width: 'fit' }"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <p>Group</p>
+    <input type="text" pInputText [(ngModel)]="skill.group" />
+    <p>Label</p>
+    <input type="text" pInputText [(ngModel)]="skill.label" />
+
+    <div class="button-container">
+      <button (click)="createSkill()">Crear</button>
+    </div>
+  </p-dialog>
+</div>

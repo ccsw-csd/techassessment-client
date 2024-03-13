@@ -16,13 +16,16 @@ export class SkillService {
 	
   }
 
+  createSkill(skill: Skill) {
+    return this.http.post(`${API_URL}skill/new`, skill).subscribe();
+  }
+
   getAllSkills():Observable<Skill[]> {
 	  return of(SKILLS_DATA);
   }
 
 
   getSkillsPage(pageable:Pageable):Observable<SkillPage>{
-    
     
     return this.http.post<SkillPage>(`${API_URL}skill`,{
       pageable:pageable,

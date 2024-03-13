@@ -20,6 +20,12 @@ body {
   overflow: hidden;
 }
 
+.p-button{
+  min-width: fit-content;
+  height: 35px;
+  color: var(--primary-color-text);
+}
+
 .p-component {
   font-family: "Ubuntu", Helvetica Neue Light, Helvetica Neue, Helvetica, Arial,
     Lucida Grande, sans-serif;

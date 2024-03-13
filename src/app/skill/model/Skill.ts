@@ -1,5 +1,5 @@
 export interface Skill {
-  id: string;
+  id: number;
   group: string;
   label: string;
 }
