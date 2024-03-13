@@ -4,10 +4,9 @@
 
 export const environment = {
   production: false,
-  appCode: 'techAssessment-client',
-  server: '',
-  sso: '',
-  ssoCredentials: '',
+  appCode: 'techassessment',
+  server: '../teammanager-data',
+  sso: '../sso',
   ssoApp: '/dev/apps'
 };
 
