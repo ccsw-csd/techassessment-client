@@ -3,19 +3,19 @@ import { SkillService } from './skill.service';
 import { Skill } from './model/Skill';
 import { TableModule, TablePageEvent } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
-import { PaginatorState } from 'primeng/paginator';
 import { Pageable } from '../core/model/page/Pageable';
+import { DialogModule, } from 'primeng/dialog';
 
 
 @Component({
   selector: 'app-skill',
   standalone: true,
-  imports: [TableModule,ButtonModule],
+  imports: [TableModule,ButtonModule,DialogModule],
   templateUrl: './skill.component.html',
   styleUrl: './skill.component.scss',
 })
 export class SkillComponent implements OnInit {
-  constructor(private skillService: SkillService) {}
+  constructor(private skillService: SkillService, ) {}
 
   pageNumber: number = 0;
   pageSize: number = 10;
