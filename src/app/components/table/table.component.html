@@ -1,0 +1,56 @@
+<div >
+<!-- <p-table [value]="columns">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      @for (column of columns; track column) {
+      <th>
+        {{ column}}
+      </th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr>
+      @for (column of columns; track column) {
+      <td>
+        {{ data[column.data] }}
+      </td>
+      }
+    </tr>
+  </ng-template>
+</p-table>
+ -->
+<p-table
+  [value]="data"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  styleClass="p-datatable-gridlines"
+>
+  <ng-template pTemplate="header">
+    <tr class="tr-header">
+      @for (column of columns; track column) {
+      <th pSortableColumn="{{ column }}">
+        {{ column }} <p-sortIcon field="{{ column }}"></p-sortIcon>
+      </th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-data>
+    <tr>
+	  @for (column of columns; track column) {
+      <td>
+        {{ data[column] }}
+      </td>
+      }
+    </tr>
+  </ng-template>
+
+</p-table>
+<p-paginator
+  (onPageChange)="onPageChange($event)"
+  [first]="5"
+  [rows]="5"
+  [totalRecords]="totalElements"
+  [rowsPerPageOptions]="[5,10,20]"
+></p-paginator>
+
+</div>

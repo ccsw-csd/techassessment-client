@@ -1,47 +1,4 @@
 <div class="container">
   <h1>Skills</h1>
-  <p-table
-    [value]="skills"
-    [paginator]="true"
-    (onPage)="onPageChange($event)"
-    [rows]="5"
-    [totalRecords]="totalElements"
-    [showCurrentPageReport]="true"
-    styleClass="p-datatable-gridlines"
-    [rowsPerPageOptions]="[5, 10, 20]"
-    currentPageReportTemplate="Total Records: {totalRecords} {{
-      totalElements
-    }}"
-    [tableStyle]="{ 'min-width': '50rem' }"
-  >
-    <ng-template pTemplate="header">
-      <tr>
-        <th style="padding: 10px" pSortableColumn="id">
-          Id <p-sortIcon field="id"></p-sortIcon>
-        </th>
-        <th pSortableColumn="group">
-          Group <p-sortIcon field="group"></p-sortIcon>
-        </th>
-        <th pSortableColumn="label">
-          Label <p-sortIcon field="label"></p-sortIcon>
-        </th>
-      </tr>
-    </ng-template>
-
-    <ng-template pTemplate="body" let-skill>
-      <tr>
-        <td>{{ skill.id }}</td>
-        <td>{{ skill.group }}</td>
-        <td>{{ skill.label }}</td>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="paginatorleft">
-      <div>
-        <app-skill-edit></app-skill-edit>
-      </div>
-    </ng-template>
-    <ng-template pTemplate="paginatorright">
-      <button class="pi pi-cloud"></button>
-    </ng-template>
-  </p-table>
-  </div>
+  <app-table [getPage]="getServicePage" [columns]="tableColumns"></app-table>
+</div>
