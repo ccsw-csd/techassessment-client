@@ -22,10 +22,10 @@ export class TableComponent implements OnInit {
 
 
   ngOnInit(): void {
-	this.onPageChange({first: 0, rows:5})
+	this.getData({first: 0, rows:this.pageSize})
   }
 
-  onPageChange(event?: any) {
+  getData(event?: any) {
 
     let pageable: Pageable = {
       pageNumber: this.pageNumber,
