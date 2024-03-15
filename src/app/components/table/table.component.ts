@@ -11,9 +11,8 @@ import { Pageable } from '../../core/model/page/Pageable';
   imports: [TableModule,PaginatorModule],
 })
 export class TableComponent implements OnInit {
-  @Input() service: any
   @Input() columns: string[] = []
-  @Input() getPage: any
+  @Input() getPage!: (pageable:Pageable)=> any
 
 	
   totalElements: number = 0;
