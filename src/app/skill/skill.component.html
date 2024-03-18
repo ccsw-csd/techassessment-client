@@ -3,5 +3,5 @@
     <h1>Skills</h1>
     <app-skill-edit></app-skill-edit>
   </div>
-  <app-table [getPage]="getServicePage" [columns]="tableColumns"></app-table>
+  <app-table  [columns]="tableColumns" (pageRetrieved)="onPageRetrieved($event)" [data]="data" [totalElements]="totalElements"></app-table>
 </div>

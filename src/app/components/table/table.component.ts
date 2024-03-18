@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { Pageable } from '../../core/model/page/Pageable';
@@ -10,26 +10,21 @@ import { Pageable } from '../../core/model/page/Pageable';
   styleUrl: './table.component.scss',
   imports: [TableModule,PaginatorModule],
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
   @Input() columns: string[] = []
-  @Input() getPage!: (pageable:Pageable)=> any
-
-	
-  totalElements: number = 0;
-  pageNumber: number = 0;
+  @Input() data: any[] = [];
+  @Input() totalElements: number = 0;
+  @Output() pageRetrieved = new EventEmitter<Pageable>();
+  
+  pageNumber: number = 5;
   pageSize: number = 10;
-  data: any[] = [];
 
 
-  ngOnInit(): void {
-	this.getData({first: 0, rows:this.pageSize})
-  }
-
-  getData(event?: any) {
-
-    let pageable: Pageable = {
-      pageNumber: this.pageNumber,
-      pageSize: this.pageSize,
+  changePage(event:any){
+    
+    const pageable: Pageable = {
+      pageNumber: event.page,
+      pageSize: event.rows,
       sort: [
         {
           property: 'id',
@@ -38,19 +33,8 @@ export class TableComponent implements OnInit {
       ],
     };
 
-     if (event != null) {
-      pageable.pageSize = event.rows;
-      pageable.pageNumber = event.first / event.rows;
-    }
-
-
-    this.getPage(pageable,)
-      .subscribe((data:any) => {
-        this.data = data.content;
-        this.pageNumber = data.pageable.pageNumber;
-        this.pageSize = data.pageable.pageSize;
-        this.totalElements = data.totalElements;
-      });
-
+    this.pageRetrieved.emit(pageable);
   }
+  
+
 }

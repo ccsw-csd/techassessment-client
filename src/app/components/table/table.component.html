@@ -25,7 +25,7 @@
 
 </p-table>
 <p-paginator
-  (onPageChange)="getData($event)"
+  (onPageChange)="changePage($event)"
   [first]="1"
   [rows]="10"
   [totalRecords]="totalElements"
