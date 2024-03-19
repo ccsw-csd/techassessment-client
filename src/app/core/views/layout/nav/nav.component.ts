@@ -18,7 +18,7 @@ export class NavComponent {
 
   ngOnInit(): void {
     this.items = [
-      { label: 'Dashboard', routerLink: '/dashboard' },
+      { label: 'Dashboard', routerLink: '/' },
       {
         label: 'Skills',
         expanded: false,

@@ -3,5 +3,6 @@
     <h1>Skills</h1>
     <app-skill-edit></app-skill-edit>
   </div>
-  <app-table  [columns]="tableColumns" (pageRetrieved)="onPageRetrieved($event)" [data]="data" [totalElements]="totalElements"></app-table>
+  <app-table  [columns]="tableColumns" (pageChangeEvent)="onPageChange($event)" [data]="data" [totalElements]="totalElements"></app-table>
+  <p-toast position="bottom-center"></p-toast>
 </div>

@@ -14,7 +14,7 @@ export class TableComponent {
   @Input() columns: string[] = []
   @Input() data: any[] = [];
   @Input() totalElements: number = 0;
-  @Output() pageRetrieved = new EventEmitter<Pageable>();
+  @Output() pageChangeEvent = new EventEmitter<Pageable>();
   
   pageNumber: number = 5;
   pageSize: number = 10;
@@ -33,7 +33,7 @@ export class TableComponent {
       ],
     };
 
-    this.pageRetrieved.emit(pageable);
+    this.pageChangeEvent.emit(pageable);
   }
   
 
