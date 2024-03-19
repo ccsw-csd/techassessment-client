@@ -3,6 +3,8 @@
   [value]="data"
   [tableStyle]="{ 'min-width': '50rem' }"
   styleClass="p-datatable-gridlines"
+  [customSort]="true"
+  (sortFunction)="customSort($event)"
 >
   <ng-template pTemplate="header">
     <tr class="tr-header">
