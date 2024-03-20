@@ -45,7 +45,6 @@ export class TableComponent {
     this.pageNumber = event.page;
     this.pageSize = event.rows;
 
-    console.log("CHANGE PAGE",event);
 
     const pageable: Pageable = {
       pageNumber: event.page,

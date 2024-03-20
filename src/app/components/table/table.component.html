@@ -5,6 +5,7 @@
   styleClass="p-datatable-gridlines"
   [customSort]="true"
   (sortFunction)="customSort($event)"
+  sortField="{{sort.property}}" 
 >
   <ng-template pTemplate="header">
     <tr class="tr-header">
