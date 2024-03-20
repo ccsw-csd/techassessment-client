@@ -2,7 +2,9 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment = {
+import { EnvironmentSSO } from "../app/core/models/EnvironmentSSO";
+
+export const environment: EnvironmentSSO = {
   production: false,
   appCode: 'techassessment',
   server: 'http://localhost:8080',
