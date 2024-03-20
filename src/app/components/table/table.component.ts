@@ -17,7 +17,7 @@ export class TableComponent {
   @Input() totalElements: number = 0;
   @Output() pageChangeEvent = new EventEmitter<Pageable>();
 
-  pageNumber: number = 5;
+  pageNumber: number = 0;
   pageSize: number = 10;
 
   sort = {
@@ -38,7 +38,7 @@ export class TableComponent {
       direction:direction,
     }
 
-    this.changePage({page:0,rows:10});
+    this.changePage({page:this.pageNumber,rows:this.pageSize});
   }
 
   changePage(event: any) {
