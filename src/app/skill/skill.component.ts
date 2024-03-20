@@ -7,6 +7,8 @@ import { TableComponent } from '../components/table/table.component';
 import { SnackbarService } from 'src/app/core/services/snackbar.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { LoadingService } from 'src/app/loading/services/loading.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-skill',
@@ -17,16 +19,15 @@ import { ToastModule } from 'primeng/toast';
   styleUrl: './skill.component.scss',
 })
 export class SkillComponent implements OnInit {
-  getServicePage: any;
   tableColumns: string[] = ['id', 'group', 'label'];
   data: any[] = [];
   totalElements: number = 0;
 
   constructor(
     public skillService: SkillService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private loadingService: LoadingService
   ) {
-    this.getServicePage = skillService.getSkillsPage.bind(skillService);
   }
 
   ngOnInit(): void {
@@ -47,7 +48,11 @@ export class SkillComponent implements OnInit {
   }
 
   getData(pageable: Pageable) {
-    this.skillService.getSkillsPage(pageable).subscribe({
+    this.loadingService.startLoading();
+    this.skillService.getSkillsPage(pageable).pipe(
+      finalize(() => this.loadingService.stopLoading())
+    )
+    .subscribe({
       next: (data: any) => {
         this.data = data.content;
         this.totalElements = data.totalElements;
@@ -59,6 +64,6 @@ export class SkillComponent implements OnInit {
           'Error al obtener los datos. Por favor, inténtelo de nuevo.'
         );
       },
-    });
+    })
   }
 }
