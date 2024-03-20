@@ -29,7 +29,7 @@
 </p-table>
 <p-paginator
   (onPageChange)="changePage($event)"
-  [first]="1"
+  [first]="(pageNumber) * pageSize"
   [rows]="10"
   [totalRecords]="totalElements"
 ></p-paginator>

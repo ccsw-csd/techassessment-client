@@ -32,6 +32,8 @@ export class TableComponent {
     // Same sort, do nothing
     if(event.field === this.sort.property && direction === this.sort.direction) return
 
+    // Go to first page
+    this.pageNumber = 0;
 
     this.sort = {
       property: event.field,
