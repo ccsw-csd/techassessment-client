@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { LoadingService } from '../loading/services/loading.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-skill',
@@ -8,16 +7,6 @@ import { LoadingService } from '../loading/services/loading.service';
   templateUrl: './skill.component.html',
   styleUrl: './skill.component.scss'
 })
-export class SkillComponent implements OnInit {
-  constructor(private loadingService: LoadingService) {
-
-  }
-  ngOnInit(): void {
-    this.loadingService.startLoading()
-    setTimeout(() => {
-      this.loadingService.stopLoading()
-
-    }, 4000)
-  }
+export class SkillComponent {
 
 }
