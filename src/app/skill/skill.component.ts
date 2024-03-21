@@ -49,16 +49,16 @@ export class SkillComponent implements OnInit {
 
   getData(pageable: Pageable) {
     this.loadingService.startLoading();
-    this.skillService.getSkillsPage(pageable).pipe(
-      finalize(() => this.loadingService.stopLoading())
-    )
+    this.skillService.getSkillsPage(pageable)
     .subscribe({
       next: (data: any) => {
         this.data = data.content;
         this.totalElements = data.totalElements;
+        this.loadingService.stopLoading();
       },
       error: () => {
         this.data = [];
+          this.loadingService.stopLoading();
 
         this.snackbarService.error(
           'Error al obtener los datos. Por favor, inténtelo de nuevo.'

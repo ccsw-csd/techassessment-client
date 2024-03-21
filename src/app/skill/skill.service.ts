@@ -16,8 +16,8 @@ export class SkillService {
 	
   }
 
-  createSkill(skill: Skill) {
-    return this.http.post(`${API_URL}skill/new`, skill).subscribe();
+  async createSkill(skill: Skill) {
+    return await this.http.post(`${API_URL}skill/new`, skill).subscribe();
   }
 
   getAllSkills():Observable<Skill[]> {
