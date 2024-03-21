@@ -8,13 +8,13 @@ import { SnackbarService } from 'src/app/core/services/snackbar.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { LoadingService } from 'src/app/loading/services/loading.service';
-import { finalize } from 'rxjs';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-skill',
   standalone: true,
-  imports: [ButtonModule, SkillEditComponent, TableComponent,ToastModule],
-  providers: [SnackbarService,MessageService],
+  imports: [ButtonModule, SkillEditComponent, TableComponent, ToastModule],
+  providers: [SnackbarService, MessageService, DialogService],
   templateUrl: './skill.component.html',
   styleUrl: './skill.component.scss',
 })
@@ -22,13 +22,14 @@ export class SkillComponent implements OnInit {
   tableColumns: string[] = ['id', 'group', 'label'];
   data: any[] = [];
   totalElements: number = 0;
+  ref: DynamicDialogRef;
 
   constructor(
     public skillService: SkillService,
+    public dialogService: DialogService,
     private snackbarService: SnackbarService,
     private loadingService: LoadingService
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getData({
@@ -43,14 +44,47 @@ export class SkillComponent implements OnInit {
     });
   }
 
+  showDialog(item: any) {
+    this.ref = this.dialogService.open(SkillEditComponent, {
+      header: item ? 'Editar habilidad' : 'Crear habilidad',
+      width: 'fit-content',
+      data: item,
+    });
+
+    this.ref.onClose.subscribe((result) => {
+      if (!result) return;
+
+      if (result === 'update')
+        this.snackbarService.showMessage('Skill actualizado correctamente');
+
+      if (result === 'create')
+        this.snackbarService.showMessage('Skill creado correctamente');
+
+      //Update data
+      this.getData({
+        pageNumber: 0,
+        pageSize: 10,
+        sort: [
+          {
+            property: 'id',
+            direction: 'ASC',
+          },
+        ],
+      });
+    });
+  }
+
+  deleteItem(item: any) {
+    //TODO
+  }
+
   onPageChange(pageable: Pageable) {
     this.getData(pageable);
   }
 
   getData(pageable: Pageable) {
     this.loadingService.startLoading();
-    this.skillService.getSkillsPage(pageable)
-    .subscribe({
+    this.skillService.getSkillsPage(pageable).subscribe({
       next: (data: any) => {
         this.data = data.content;
         this.totalElements = data.totalElements;
@@ -58,12 +92,12 @@ export class SkillComponent implements OnInit {
       },
       error: () => {
         this.data = [];
-          this.loadingService.stopLoading();
+        this.loadingService.stopLoading();
 
         this.snackbarService.error(
           'Error al obtener los datos. Por favor, inténtelo de nuevo.'
         );
       },
-    })
+    });
   }
 }

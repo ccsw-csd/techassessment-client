@@ -2,20 +2,24 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PaginatorModule } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
 import { Pageable } from '../../core/model/page/Pageable';
-import { SortPage } from 'src/app/core/models/SortPage';
+import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-table',
   standalone: true,
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
-  imports: [TableModule, PaginatorModule],
+  imports: [TableModule, PaginatorModule,CommonModule,ButtonModule],
 })
 export class TableComponent {
   @Input() columns: string[] = [];
   @Input() data: any[] = [];
   @Input() totalElements: number = 0;
+  @Input() edit?: boolean = true;
   @Output() pageChangeEvent = new EventEmitter<Pageable>();
+  @Output() editItemEvent = new EventEmitter<any>();
+  @Output() deleteItemEvent = new EventEmitter<any>();
 
   pageNumber: number = 0;
   pageSize: number = 10;
@@ -56,4 +60,13 @@ export class TableComponent {
 
     this.pageChangeEvent.emit(pageable);
   }
+
+  editItem(item: any) {
+    this.editItemEvent.emit(item);
+  }
+
+  deleteItem(item: any) {
+    this.deleteItemEvent.emit(item);
+  }
+
 }
