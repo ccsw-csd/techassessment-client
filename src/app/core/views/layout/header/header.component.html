@@ -11,7 +11,7 @@
       ></button>
       <div class="flex align-items-center justify-content-start p-fluid pl-1">
         <div class="image aboslute left-0" routerLink="/welcome">
-          <!-- <img src="assets/images/logo.png" height="40px" alt="" /> -->
+          <img src="assets/images/logo.png" height="40px" alt="" />
         </div>
       </div>
     </div>
@@ -22,11 +22,19 @@
         class="flex flex-row text-white cursor-pointer gap-2 align-items-center"
         (click)="menu.toggle($event)"
       >
+        @if(userPicture != null){
+        <img
+          [src]="userPicture"
+          class="w-2rem h-2rem"
+          style="border-radius: 50%"
+        />
+        } @else{
         <div class="header-icon">
           <i class="pi pi-user"></i>
         </div>
+        }
 
-        <span> getName() </span>
+        <span> {{ getName() }}</span>
 
         <div class="header-icon">
           <span class="pi pi-angle-down"></span>
@@ -39,16 +47,26 @@
 <p-overlayPanel #menu>
   <div class="flex flex-column pt-3 pb-2">
     <div class="flex flex-row w-full align-items-center gap-4 pl-4 pr-4">
+      @if(userPicture != null){
+      <img
+        [src]="userPicture"
+        class="w-4rem h-4rem"
+        style="border-radius: 50%"
+      />
+      } @else {
       <div class="header-icon">
         <span
           class="pi pi-user"
           style="color: lightgray; font-size: 3rem"
         ></span>
       </div>
+      }
 
       <div class="flex flex-1 flex-column gap-2">
-        <span><b>getName() </b></span>
-        <span class="text-xs">etEmail() </span>
+        <span
+          ><b> {{ getName() }} </b></span
+        >
+        <span class="text-xs">{{ getEmail() }} </span>
       </div>
     </div>
 
@@ -86,6 +104,7 @@
 
     <div
       class="flex flex-row w-full align-items-center gap-2 cursor-pointer pl-4 pr-4 item-menu"
+      (click)="logout()"
     >
       <span class="pi pi-sign-out"></span>
       <span>Sign out</span>

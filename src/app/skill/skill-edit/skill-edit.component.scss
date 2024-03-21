@@ -1,5 +1,4 @@
 button{
-  background: transparent;
   border-radius: 9999px;
   padding: 10px;
   border: 1px solid transparent;
@@ -11,9 +10,7 @@ button{
   }
 }  
 
-.header{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+.button-container{
+  margin-top: 20px;
 }
+

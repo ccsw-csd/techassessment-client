@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ToolbarModule } from 'primeng/toolbar';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ import { ToolbarModule } from 'primeng/toolbar';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   userPicture = null;
   user = null;
@@ -19,11 +20,13 @@ export class HeaderComponent {
   @Output() navOpenEvent = new EventEmitter();
 
   constructor(
-
+    private auth: AuthService
   ) { }
 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+    this.user = this.auth.getUserInfo();
+    this.userPicture = this.auth.getSSOPicture();
   }
 
   toggleSideNav() {
@@ -31,19 +34,19 @@ export class HeaderComponent {
     this.navOpenEvent.emit(this.navOpen);
   }
 
-  // getEmail(): string {
-  //   if (this.user == null) return "";
-  //   return this.user.email;
-  // }
+  getEmail(): string {
+    if (this.user == null) return "";
+    return this.user.email;
+  }
 
-  // getName(): string {
-  //   if (this.user == null) return "";
-  //   return this.user.displayName;
-  // }
+  getName(): string {
+    if (this.user == null) return "";
+    return this.user.displayName;
+  }
 
-  // logout() {
-  //   this.auth.logout();
-  // }
+  logout() {
+    this.auth.logout();
+  }
 
   // apps() : void {
   //   window.open('https://cca.'+this.getDomain()+'.com'+environment.ssoApp, "_blank");

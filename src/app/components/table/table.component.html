@@ -1,0 +1,37 @@
+<div >
+<p-table
+  [value]="data"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  styleClass="p-datatable-gridlines"
+  [customSort]="true"
+  (sortFunction)="customSort($event)"
+  sortField="{{sort.property}}" 
+>
+  <ng-template pTemplate="header">
+    <tr class="tr-header">
+      @for (column of columns; track column) {
+      <th pSortableColumn="{{ column }}">
+        {{ column }} <p-sortIcon field="{{ column }}"></p-sortIcon>
+      </th>
+      }
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-data>
+    <tr>
+	  @for (column of columns; track column) {
+      <td>
+        {{ data[column] }}
+      </td>
+      }
+    </tr>
+  </ng-template>
+
+</p-table>
+<p-paginator
+  (onPageChange)="changePage($event)"
+  [first]="(pageNumber) * pageSize"
+  [rows]="10"
+  [totalRecords]="totalElements"
+></p-paginator>
+
+</div>
