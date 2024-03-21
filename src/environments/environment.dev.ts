@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   appCode: 'techassessment',
-  server: '../teammanager-data',
+  server: '../techassessment-data',
   sso: '../sso',
   ssoApp: '/dev/apps'
 };
