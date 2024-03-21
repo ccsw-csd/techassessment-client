@@ -1,34 +1,34 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from 'rxjs';
-import { SKILLS_DATA } from "./model/mockup-skills";
-import { Skill } from "./model/Skill";
+import { environment } from "src/environments/environment";
 import { Pageable } from "../core/model/page/Pageable";
-import { HttpClient } from "@angular/common/http";
+import { Skill } from "./model/Skill";
 import { SkillPage } from "./model/SkillPage";
-import { API_URL } from "../../config";
+import { SKILLS_DATA } from "./model/mockup-skills";
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class SkillService {
+  constructor(private http: HttpClient) {
 
-  constructor(private http:HttpClient) {
-	
   }
+  private readonly baseUrl: string = environment.server;
 
   async createSkill(skill: Skill) {
-    return await this.http.post(`${API_URL}skill/new`, skill).subscribe();
+    return await this.http.post(`${this.baseUrl}/skill/new`, skill).subscribe();
   }
 
-  getAllSkills():Observable<Skill[]> {
-	  return of(SKILLS_DATA);
+  getAllSkills(): Observable<Skill[]> {
+    return of(SKILLS_DATA);
   }
 
 
-  getSkillsPage(pageable:Pageable):Observable<SkillPage>{
-    
-    return this.http.post<SkillPage>(`${API_URL}skill`,{
-      pageable:pageable,
+  getSkillsPage(pageable: Pageable): Observable<SkillPage> {
+
+    return this.http.post<SkillPage>(`${this.baseUrl}/skill`, {
+      pageable: pageable,
     });
 
   }
