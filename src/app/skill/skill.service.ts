@@ -23,6 +23,11 @@ export class SkillService {
       .subscribe();
   }
 
+  deleteSkill(id: string): Observable<any> {
+    return this.http
+      .delete(`${API_URL}skill/${id}`)
+  }
+
   getAllSkills(): Observable<Skill[]> {
     return of(SKILLS_DATA);
   }
