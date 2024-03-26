@@ -76,8 +76,10 @@ export class SkillEditComponent {
 
     if (this.editing) {
       this.skillService
-        .updateSkill(this.skill)
-        .then(() => this.ref.close('update'));
+        .updateSkill(this.skill).subscribe(() => {
+          this.ref.close('update');
+        });
+        
 
       // Close dialog
       return;

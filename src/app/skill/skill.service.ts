@@ -17,10 +17,9 @@ export class SkillService {
     return await this.http.post(`${API_URL}skill/new`, skill).subscribe();
   }
 
-  async updateSkill(skill: Skill) {
-    return await this.http
+  updateSkill(skill: Skill) {
+    return this.http
       .put(`${API_URL}skill/${skill.id}`, skill)
-      .subscribe();
   }
 
   deleteSkill(id: string): Observable<any> {

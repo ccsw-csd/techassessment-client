@@ -14,7 +14,7 @@
           {{ column }} <p-sortIcon field="{{ column }}"></p-sortIcon>
         </th>
         }
-        <th *ngIf="edit">Actions</th>
+        <th *ngIf="edit" class="actions">Actions</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data>
@@ -25,8 +25,10 @@
         </td>
         }
         <td *ngIf="edit">
-          <p-button  class="edit" pButton icon="pi pi-pencil" (click)="editItem(data)"></p-button>
-          <p-button pButton icon="pi pi-trash" (click)="deleteItem(data)"></p-button>
+          <p-button class="edit button" [outlined]="true" icon="pi pi-pencil" (click)="editItem(data)"
+          [style]="{'background-color': 'transparent'}"></p-button>
+          <p-button  [outlined]="true" icon="pi pi-trash" (click)="deleteItem(data)"
+          [style]="{'background-color': 'transparent'}"></p-button>
         </td>
       </tr>
     </ng-template>
