@@ -69,12 +69,13 @@ export class SkillComponent implements OnInit {
 
       if (result === 'update')
         this.snackbarService.showMessage('Skill actualizado correctamente');
-
+      
       if (result === 'create')
-        this.snackbarService.showMessage('Skill creado correctamente');
+      this.snackbarService.showMessage('Skill creado correctamente');
+
+      this.getDefaultData();
     });
 
-    this.getDefaultData();
   }
 
   getDefaultData() {

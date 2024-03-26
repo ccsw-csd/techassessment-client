@@ -73,10 +73,6 @@ export class SkillEditComponent {
       return;
     }
 
-    if (this.skill.group == '' || this.skill.label == '') {
-      this.snackbarService.error('Los campos no pueden estar vacíos');
-      return;
-    }
 
     if (this.editing) {
       this.skillService
