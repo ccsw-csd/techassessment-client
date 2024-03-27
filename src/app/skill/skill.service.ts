@@ -13,8 +13,8 @@ import { API_URL } from '../../config';
 export class SkillService {
   constructor(private http: HttpClient) {}
 
-  async createSkill(skill: Skill) {
-    return await this.http.post(`${API_URL}skill/new`, skill).subscribe();
+  createSkill(skill: Skill) {
+    return this.http.post(`${API_URL}skill/new`, skill);
   }
 
   updateSkill(skill: Skill) {

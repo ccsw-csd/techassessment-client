@@ -73,20 +73,33 @@ export class SkillEditComponent {
       return;
     }
 
+    this.skill = { ...this.skill, ...this.form.value };
 
     if (this.editing) {
-      this.skillService
-        .updateSkill(this.skill).subscribe(() => {
+      
+
+      this.skillService.updateSkill(this.skill).subscribe({
+        next: () => {
           this.ref.close('update');
-        });
+        },
+        error: (e) => {
+          this.snackbarService.error('Error al actualizar la habilidad');
+        },
+
+      })
         
 
       // Close dialog
       return;
     }
 
-    this.skillService
-      .createSkill(this.skill)
-      .then(() => this.ref.close('update'));
+    this.skillService.createSkill(this.skill).subscribe({
+      next: () => {
+        this.ref.close('create');
+      },
+      error: () => {
+        this.snackbarService.error('Error al crear la habilidad');
+      },
+    });
   }
 }
